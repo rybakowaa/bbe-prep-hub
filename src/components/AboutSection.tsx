@@ -6,7 +6,7 @@ const infoBoxes = [
   "Thousands of applicants compete for just 240 spots each year.",
   "Success requires strategic preparation and expert guidance.",
   "Our students consistently outperform with proven strategies.",
-  "Join the BBE Club and turn your dream into reality.",
+  "something else",
 ];
 
 const AboutSection = () => {
