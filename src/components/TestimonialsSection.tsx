@@ -10,7 +10,7 @@ const testimonials = [
   {
     name: "Maximilian K.",
     program: "BBE 2024",
-    text: "I was overwhelmed by the competition until I joined BBE Club. The instructors broke everything down and made me believe I could do it. Now I'm studying at WU!",
+    text: "I was overwhelmed by the competition until I joined BBE Club preparation course. The instructors broke everything down and made me believe I could do it. Now I'm studying at WU!",
   },
   {
     name: "Sophie L.",
