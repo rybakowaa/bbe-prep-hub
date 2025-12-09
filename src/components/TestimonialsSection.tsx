@@ -1,22 +1,32 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Quote } from "lucide-react";
+import { Star, Play } from "lucide-react";
+import { useState } from "react";
 
 const testimonials = [
   {
     name: "Anna M.",
-    program: "BBE 2024",
-    text: "The BBE Club course was a game-changer. The mock exams were incredibly similar to the real test, and the strategies I learned helped me manage my time perfectly.",
+    role: "BBE Student",
+    rank: "Top 3%",
+    text: "The practice tests were incredibly similar to the real exam. I felt completely prepared!",
   },
   {
-    name: "Maximilian K.",
-    program: "BBE 2024",
-    text: "I was overwhelmed by the competition until I joined BBE Club preparation course. The instructors broke everything down and made me believe I could do it. Now I'm studying at WU!",
+    name: "Markus K.",
+    role: "BBE Student",
+    rank: "Top 5%",
+    text: "The strategy sessions changed everything. I learned how to manage my time effectively.",
   },
   {
     name: "Sophie L.",
-    program: "BBE 2023",
-    text: "The personalized feedback was invaluable. They identified my weaknesses early and helped me turn them into strengths. I couldn't have done it without them.",
+    role: "BBE Student",
+    rank: "Top 7%",
+    text: "Without BBE Club, I wouldn't have made it. The instructors truly care about your success.",
   },
+];
+
+const videoReviews = [
+  { title: "Student Review 1" },
+  { title: "Student Review 2" },
+  { title: "Student Review 3" },
 ];
 
 const TestimonialsSection = () => {
@@ -40,13 +50,49 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Video Reviews */}
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {videoReviews.map((video, index) => (
+            <VideoReviewCard key={index} video={video} index={index} />
+          ))}
+        </div>
+
+        {/* Text Reviews */}
+        <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} index={index} />
           ))}
         </div>
       </div>
     </section>
+  );
+};
+
+const VideoReviewCard = ({
+  video,
+  index
+}: {
+  video: typeof videoReviews[0];
+  index: number;
+}) => {
+  const { ref, isVisible } = useScrollAnimation(0.2);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  return (
+    <div
+      ref={ref}
+      className={`opacity-0 ${isVisible ? 'animate-fade-up' : ''}`}
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
+      <div className="bg-slate-800 rounded-2xl aspect-video flex flex-col items-center justify-center cursor-pointer group hover:shadow-2xl transition-all duration-300">
+        <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+          <div className="w-12 h-12 rounded-full bg-primary/40 flex items-center justify-center">
+            <Play className="w-6 h-6 text-primary fill-primary ml-1" />
+          </div>
+        </div>
+        <p className="text-slate-400 mt-4 text-sm">{video.title}</p>
+      </div>
+    </div>
   );
 };
 
@@ -65,26 +111,33 @@ const TestimonialCard = ({
       className={`opacity-0 ${isVisible ? 'animate-fade-up' : ''}`}
       style={{ animationDelay: `${index * 0.15}s` }}
     >
-      <div className="glass-card rounded-2xl p-8 h-full relative hover:shadow-2xl hover:shadow-secondary/10 transition-all duration-300 group">
-        {/* Quote icon */}
-        <div className="absolute -top-4 -left-2 w-10 h-10 rounded-full gradient-bg flex items-center justify-center opacity-80">
-          <Quote className="w-5 h-5 text-foreground" />
+      <div className="bg-white rounded-2xl p-6 h-full shadow-lg hover:shadow-xl transition-all duration-300">
+        {/* Stars */}
+        <div className="flex gap-1 mb-4">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="w-5 h-5 text-primary fill-primary" />
+          ))}
         </div>
         
         <p className="text-foreground mb-6 italic leading-relaxed">
           "{testimonial.text}"
         </p>
         
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-full gradient-bg flex items-center justify-center">
-            <span className="text-lg font-bold text-foreground">
-              {testimonial.name[0]}
-            </span>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full gradient-bg flex items-center justify-center">
+              <span className="text-sm font-bold text-foreground">
+                {testimonial.name[0]}
+              </span>
+            </div>
+            <div>
+              <p className="font-semibold text-sm">{testimonial.name}</p>
+              <p className="text-xs text-muted-foreground">{testimonial.role}</p>
+            </div>
           </div>
-          <div>
-            <p className="font-semibold">{testimonial.name}</p>
-            <p className="text-sm text-muted-foreground">{testimonial.program}</p>
-          </div>
+          <span className="px-3 py-1 rounded-full border-2 border-slate-700 bg-slate-800 text-white text-sm font-medium">
+            {testimonial.rank}
+          </span>
         </div>
       </div>
     </div>
