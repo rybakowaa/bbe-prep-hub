@@ -1,4 +1,5 @@
 import { Youtube, Instagram, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,9 +16,9 @@ const Footer = () => {
 
         {/* Social Links */}
         <div className="flex justify-center gap-6 mb-12">
-          <SocialLink href="https://youtube.com" icon={Youtube} label="YouTube" />
+          <SocialLink href="http://www.youtube.com/@BBEClub" icon={Youtube} label="YouTube" />
           <SocialLink href="https://tiktok.com" icon={TikTokIcon} label="TikTok" />
-          <SocialLink href="https://instagram.com" icon={Instagram} label="Instagram" />
+          <SocialLink href="https://www.instagram.com/bbeclub/" icon={Instagram} label="Instagram" />
           <SocialLink href="mailto:contact@bbeclub.com" icon={Mail} label="Email" />
         </div>
 
@@ -34,7 +35,16 @@ const Footer = () => {
 
         {/* Bottom */}
         <div className="border-t border-background/10 pt-8 text-center text-background/50 text-sm">
-          <p>© {new Date().getFullYear()} BBE Club. All rights reserved.</p>
+          <p className="mb-2">© {new Date().getFullYear()} BBE Club. All rights reserved.</p>
+          <Link
+            to="/privacy-policy"
+            className="hover:text-background/80 transition-colors underline"
+          >
+            Privacy Policy
+          </Link>
+          <p className="mt-4 text-background/40">
+            Website developed by Daria Rybakova
+          </p>
         </div>
       </div>
     </footer>

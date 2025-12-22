@@ -1,5 +1,5 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { ImageIcon, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 const phrases = [
   "I got accepted!",
@@ -28,7 +28,7 @@ const CTASection = () => {
           ref={titleRef}
           className={`text-center mb-12 opacity-0 ${titleVisible ? 'animate-fade-up' : ''}`}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+          <h2 className="text-4xl md:text-5xl font-bold">
             Your way to{" "}
             <span className="gradient-text">
               BBE
@@ -86,13 +86,15 @@ const CTASection = () => {
           ref={imageRef}
           className={`opacity-0 ${imageVisible ? 'animate-fade-up' : ''}`}
         >
-          <div className="rounded-3xl bg-gradient-to-br from-primary/10 to-secondary/10 border-2 border-dashed border-primary/30 flex items-center justify-center h-80 md:h-96">
-            <div className="text-center text-muted-foreground">
-              <ImageIcon className="w-16 h-16 mx-auto mb-4 opacity-50" />
-              <p className="text-lg">Photo placeholder</p>
-            </div>
+          <div className="rounded-3xl overflow-hidden shadow-xl">
+            <img
+              src="/images/41b2e88f-a7a2-45b4-b581-d3dd82f7b867.jpeg"
+              alt="BBE Club students"
+              className="w-full h-[420px] md:h-[480px] object-cover object-center"
+            />
           </div>
         </div>
+
       </div>
     </section>
   );

@@ -1,7 +1,6 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Play, Calculator, ArrowDown } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 
 // Custom Big Ben icon for English
 const EnglishIcon = ({ className }: { className?: string }) => (
@@ -89,29 +88,29 @@ const HyperbolaIcon = ({ className }: { className?: string }) => (
 );
 
 const courseSubjects = [
-  { 
-    icon: Calculator, 
-    text: "Economics", 
+  {
+    icon: Calculator,
+    text: "Economics",
     isCustom: false,
     description: "We cover all the key topics from your economics textbook and translate the difficult 'economic language' into clear, simple explanations. Along the way, you get focused summaries and plenty of targeted practice so you can confidently handle exam questions.",
     number: "01.",
-    questionBank: "Bank of 200+ questions"
+    questionCount: "200+"
   },
-  { 
-    icon: HyperbolaIcon, 
-    text: "Mathematics", 
+  {
+    icon: HyperbolaIcon,
+    text: "Mathematics",
     isCustom: true,
     description: "For mathematics, our professional tutors who have successfully made it into BBE program explain every relevant topic and solve problems in real time, providing a detailed step-by-step explanation of each solution.",
     number: "02.",
-    questionBank: "Bank of 400+ questions"
+    questionCount: "400+"
   },
-  { 
-    icon: EnglishIcon, 
-    text: "English", 
+  {
+    icon: EnglishIcon,
+    text: "English",
     isCustom: true,
     description: "We provide tailored sets of practice exercises focused on the most tedious yet exam-critical topics, so you can systematically train exactly what is most likely to be tested.",
     number: "03.",
-    questionBank: "Bank of 100+ questions"
+    questionCount: "100+"
   },
 ];
 
@@ -132,10 +131,10 @@ const CourseStructureSection = () => {
           className={`text-center mb-12 opacity-0 ${titleVisible ? 'animate-fade-up' : ''}`}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Course Structure: Everything you need to succeed in one package
+            Course Structure: Everything you need to succeed
           </h2>
           <p className="text-xl md:text-2xl">
-            We offer <span className="font-bold">700+</span> practice questions with the most relevant and updated tasks!
+            We offer <span className="font-bold gradient-text text-2xl md:text-3xl">700+</span> practice questions with the most relevant and updated tasks!
           </p>
         </div>
       </div>
@@ -173,7 +172,9 @@ const CourseStructureSection = () => {
               <p className="text-base leading-relaxed text-slate-300 flex-1">{subject.description}</p>
               
               {/* Question Bank */}
-              <p className="text-xl font-bold text-white mt-6">{subject.questionBank}</p>
+              <p className="text-xl font-bold text-white mt-6">
+                Bank of <span className="gradient-text text-2xl">{subject.questionCount}</span> questions
+              </p>
             </div>
           );
         })}
@@ -216,12 +217,6 @@ const CourseStructureSection = () => {
           )}
         </div>
 
-        {/* Tariff button */}
-        <div className="flex justify-center mt-16">
-          <Button variant="hero" size="xl" className="text-xl px-16 py-8 font-semibold">
-            Tariff Information
-          </Button>
-        </div>
       </div>
     </section>
   );

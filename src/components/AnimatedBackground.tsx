@@ -36,18 +36,23 @@ const AnimatedBackground = () => {
           vec2 uv = gl_FragCoord.xy / iResolution.xy;
           vec4 color = vec4(0.0);
           
-          // Only 8 comets, moving slowly to bottom-right
-          for (float i = 0.0; i < 8.0; i++) {
-            // Starting position with offset
-            float seed = i * 1.7;
+          // Only 5 comets, moving slowly to bottom-right with scattered positions
+          for (float i = 0.0; i < 5.0; i++) {
+            // Use different prime numbers for better distribution
+            float seed1 = rand(vec2(i * 13.37, i * 7.89));
+            float seed2 = rand(vec2(i * 23.45, i * 11.23));
+            float seed3 = rand(vec2(i * 31.17, i * 17.53));
+
+            // Scattered starting positions across the screen
             vec2 start = vec2(
-              fract(seed * 0.3) * 1.4 - 0.2,
-              fract(seed * 0.7) * 1.4 - 0.2
+              seed1 * 1.2 - 0.1,
+              seed2 * 1.2 - 0.1
             );
-            
-            // Slow movement to bottom-right
-            float speed = 0.03 + fract(seed * 0.5) * 0.02;
-            vec2 pos = start + vec2(1.0, -1.0) * iTime * speed;
+
+            // Different speeds and time offsets for each comet
+            float speed = 0.02 + seed3 * 0.03;
+            float timeOffset = seed1 * 100.0; // Each comet starts at different "time"
+            vec2 pos = start + vec2(1.0, -1.0) * (iTime + timeOffset) * speed;
             
             // Wrap around
             pos = fract(pos + 1.0);
@@ -117,7 +122,7 @@ const AnimatedBackground = () => {
   return (
     <div 
       ref={containerRef} 
-      className="fixed inset-0 z-0 pointer-events-none"
+      className="absolute inset-0 z-0 pointer-events-none"
     />
   );
 };
