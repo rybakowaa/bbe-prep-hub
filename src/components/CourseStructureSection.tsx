@@ -124,10 +124,12 @@ const pricingPlans = [
     price: "70",
     description: "A clear, step-by-step BBE entrance exam preparation with platform practice.",
     features: [
-      "Access to all video materials",
-      "Practice questions bank",
-      "Study guides & summaries",
-      "Email support",
+      "Full access to the platform (questions + solutions)",
+      "Structured study plan (weekly roadmap)",
+      "Live group session (Q&A)",
+      "Access to recorded question walkthroughs",
+      "General guidance notes + key tips",
+      "Basic exam toolkit (checklist + time-management tips)",
     ],
     recommended: false,
     accentColor: "cyan",
@@ -139,10 +141,10 @@ const pricingPlans = [
     description: "Intensive prep to maximize your chances of getting into the BBE program, with extra guidance and support.",
     features: [
       "Everything in Standard",
-      "Live Q&A sessions",
-      "Personal feedback on practice tests",
-      "Priority support",
-      "Exclusive tips from current students",
+      "One full exam simulation under real test conditions, including time limits and structure identical to the actual exam",
+      "Private question access to a tutor with responses within 48 hours",
+      "Additional live sessions for guided problem solving and exam strategy",
+      "Exclusive tips from tutors on timing, common traps, and test-day strategy",
     ],
     recommended: true,
     accentColor: "gradient",
@@ -180,26 +182,22 @@ const CourseStructureSection = () => {
           const Icon = subject.icon;
           
           return (
-            <div key={index} className="bg-slate-900 p-8 md:p-12 relative min-h-[400px] flex flex-col">
+            <div key={index} className="bg-slate-900 p-8 md:p-12 relative min-h-[400px] flex flex-col items-center text-center">
               {/* Image placeholder area */}
               <div className="h-40 flex items-center justify-center mb-8">
-                <div className="w-24 h-24 rounded-2xl border-2 border-white p-[2px]">
+                <div className="w-24 h-24 rounded-2xl p-[2px]" style={{ background: 'linear-gradient(135deg, hsl(199, 95%, 81%) 0%, hsl(291, 95%, 80%) 100%)' }}>
                   <div className="w-full h-full rounded-2xl bg-slate-900 flex items-center justify-center">
-                    {subject.isCustom ? (
-                      <Icon className="w-12 h-12 text-cyan-400" />
-                    ) : (
-                      <Icon className="w-12 h-12 text-cyan-400" />
-                    )}
+                    <Icon className="w-12 h-12 text-white" />
                   </div>
                 </div>
               </div>
-              
+
               {/* Title */}
               <h3 className="text-2xl font-bold mb-4 text-white">{subject.text}</h3>
-              
+
               {/* Description */}
               <p className="text-base leading-relaxed text-slate-300 flex-1">{subject.description}</p>
-              
+
               {/* Question Bank */}
               <p className="text-xl font-bold text-white mt-6">
                 Bank of <span className="gradient-text text-2xl">{subject.questionCount}</span> questions
