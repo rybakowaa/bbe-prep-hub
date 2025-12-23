@@ -181,12 +181,9 @@ const CourseStructureSection = () => {
           
           return (
             <div key={index} className="bg-slate-900 p-8 md:p-12 relative min-h-[400px] flex flex-col">
-              {/* Number in top right */}
-              <span className="absolute top-6 right-6 text-sm text-slate-400">{subject.number}</span>
-              
               {/* Image placeholder area */}
               <div className="h-40 flex items-center justify-center mb-8">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-cyan-400 via-purple-400 to-pink-400 p-[2px]">
+                <div className="w-24 h-24 rounded-2xl border-2 border-white p-[2px]">
                   <div className="w-full h-full rounded-2xl bg-slate-900 flex items-center justify-center">
                     {subject.isCustom ? (
                       <Icon className="w-12 h-12 text-cyan-400" />

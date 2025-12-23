@@ -107,12 +107,27 @@ const Pricing = () => {
             <button
               type="button"
               onClick={() => handlePlanSelect("plus")}
-              className={`rounded-lg shadow-xl p-6 text-center transition-all ${
-                selectedPlan === "plus"
-                  ? "bg-gradient-to-br from-slate-900 to-slate-950 ring-4 ring-cyan-400"
-                  : "bg-gradient-to-br from-slate-800 to-slate-900 opacity-70 hover:opacity-90"
-              }`}
+              className="rounded-lg shadow-xl p-6 text-center transition-all relative"
+              style={{
+                background: selectedPlan === "plus"
+                  ? "linear-gradient(to bottom right, #0f172a, #020617)"
+                  : "linear-gradient(to bottom right, #1e293b, #0f172a)",
+                opacity: selectedPlan === "plus" ? 1 : 0.7,
+              }}
             >
+              {selectedPlan === "plus" && (
+                <div
+                  className="absolute inset-0 rounded-lg"
+                  style={{
+                    padding: "4px",
+                    background: "linear-gradient(135deg, hsl(199, 100%, 70%) 0%, hsl(280, 100%, 70%) 100%)",
+                    WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                    WebkitMaskComposite: "xor",
+                    maskComposite: "exclude",
+                    pointerEvents: "none",
+                  }}
+                />
+              )}
               <p className="text-slate-400 text-xs uppercase tracking-wider mb-1">Plus</p>
               <div className="flex items-baseline justify-center gap-1">
                 <span className="text-4xl font-bold text-white">100</span>
