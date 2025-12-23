@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="py-16 px-4 bg-foreground text-background">
+    <footer className="py-16 px-4 bg-slate-900 text-background">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <span className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
@@ -42,10 +42,7 @@ const Footer = () => {
           >
             Privacy Policy
           </Link>
-          <p className="mt-4 text-background/40">
-            Website developed by Daria Rybakova
-          </p>
-        </div>
+                  </div>
       </div>
     </footer>
   );

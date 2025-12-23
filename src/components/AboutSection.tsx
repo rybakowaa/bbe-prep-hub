@@ -5,11 +5,7 @@ const AboutSection = () => {
   const { ref: blocksRef, isVisible: blocksVisible } = useScrollAnimation(0.5);
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
-      {/* Background accent */}
-      <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-secondary/10 rounded-full blur-3xl" />
-      
+    <section id="about" className="py-24 relative overflow-hidden bg-white">
       <div className="max-w-6xl mx-auto relative z-10 w-full px-4">
         {/* Title centered at top */}
         <div
@@ -23,15 +19,15 @@ const AboutSection = () => {
             Your guide to success in the BBE entrance exam.
           </p>
         </div>
-        
+
         {/* Three blocks in a row with purple top border */}
-        <div 
+        <div
           ref={blocksRef}
           className={`grid md:grid-cols-3 gap-0 opacity-0 ${blocksVisible ? 'animate-fade-up' : ''}`}
           style={{ animationDelay: '0.3s' }}
         >
           {/* Block 1 */}
-          <div className="bg-white p-8 border-t-4 border-t-slate-700 border-l border-b border-r border-gray-200 flex flex-col">
+          <div className="bg-white p-8 border-t-4 border-t-slate-900 border-l border-b border-r border-gray-200 flex flex-col">
             <span className="text-sm text-gray-400 mb-4">About us</span>
             <h3 className="text-2xl font-bold mb-4 text-gray-900">Student-Led Initiative</h3>
             <p className="text-gray-600 leading-relaxed flex-1">
@@ -40,7 +36,7 @@ const AboutSection = () => {
           </div>
 
           {/* Block 2 */}
-          <div className="bg-white p-8 border-t-4 border-t-slate-700 border-l border-b border-r border-gray-200 flex flex-col">
+          <div className="bg-white p-8 border-t-4 border-t-slate-900 border-l border-b border-r border-gray-200 flex flex-col">
             <span className="text-sm text-gray-400 mb-4">Our mission</span>
             <h3 className="text-2xl font-bold mb-4 text-gray-900">Guiding Future Students</h3>
             <p className="text-gray-600 leading-relaxed flex-1">
@@ -49,7 +45,7 @@ const AboutSection = () => {
           </div>
 
           {/* Block 3 */}
-          <div className="bg-white p-8 border-t-4 border-t-slate-700 border-l border-b border-r border-gray-200 flex flex-col">
+          <div className="bg-white p-8 border-t-4 border-t-slate-900 border-l border-b border-r border-gray-200 flex flex-col">
             <span className="text-sm text-gray-400 mb-4">Our approach</span>
             <h3 className="text-2xl font-bold mb-4 text-gray-900">Proven Success</h3>
             <p className="text-gray-600 leading-relaxed flex-1">

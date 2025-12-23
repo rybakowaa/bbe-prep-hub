@@ -108,6 +108,10 @@
     background-image: var(--gradient-primary);
   }
 
+  .gradient-icon {
+    stroke: url(#icon-gradient);
+  }
+
   .gradient-border {
     position: relative;
   }

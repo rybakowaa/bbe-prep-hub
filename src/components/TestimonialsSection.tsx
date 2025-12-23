@@ -68,8 +68,8 @@ const TestimonialsSection = () => {
         {/* CTA Button */}
         <div className="text-center mt-24">
           <Link to="/pricing" state={{ from: "testimonials" }}>
-            <Button variant="hero" size="xl" className="shadow-xl">
-              Pricing and Enrolment
+            <Button variant="hero" size="xl" className="shadow-xl rounded-full">
+              Enrolment
             </Button>
           </Link>
         </div>
@@ -146,7 +146,7 @@ const TestimonialCard = ({
               <p className="text-xs text-muted-foreground">{testimonial.role}</p>
             </div>
           </div>
-          <span className="px-3 py-1 rounded-full border-2 border-slate-700 bg-slate-800 text-white text-sm font-medium">
+          <span className="px-3 py-1 rounded-full border-2 border-slate-800 bg-slate-900 text-white text-sm font-medium">
             {testimonial.rank}
           </span>
         </div>

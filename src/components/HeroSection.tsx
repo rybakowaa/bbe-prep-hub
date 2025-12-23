@@ -26,11 +26,11 @@ const HeroSection = () => {
           <div>
             <div className="animate-fade-up">
               <span className="text-6xl md:text-7xl lg:text-8xl tracking-tight leading-none">
-                <span className="font-black text-slate-800">BBE</span>
-                <span className="font-light text-slate-800 ml-4 md:ml-6">CLUB</span>
+                <span className="font-black text-slate-900">BBE</span>
+                <span className="font-light text-slate-900 ml-4 md:ml-6">CLUB</span>
               </span>
             </div>
-            <p className="text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.15em] text-slate-700 mt-4 animate-fade-up font-bold whitespace-nowrap" style={{ animationDelay: '0.1s' }}>
+            <p className="text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.15em] text-slate-900 mt-4 animate-fade-up font-bold whitespace-nowrap" style={{ animationDelay: '0.1s' }}>
               Preparation course for BBE Entrance Exam
             </p>
 
@@ -49,19 +49,18 @@ const HeroSection = () => {
               <Button
                 variant="hero"
                 size="lg"
-                className="shadow-xl"
+                className="shadow-xl rounded-full"
                 onClick={scrollToNext}
               >
                 More Information
-                <ChevronDown className="w-4 h-4 ml-2" />
               </Button>
               <Link to="/pricing">
                 <Button
                   variant="hero"
                   size="lg"
-                  className="shadow-xl"
+                  className="shadow-xl rounded-full"
                 >
-                  Pricing and Enrolment
+                  Enrolment
                 </Button>
               </Link>
             </div>

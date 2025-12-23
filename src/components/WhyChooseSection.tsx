@@ -67,7 +67,7 @@ const WhyChooseSection = () => {
                 <div className="relative z-10">
                   <div className="mb-6 group-hover:scale-110 transition-transform duration-300">
                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-400 via-purple-400 to-pink-400 p-[2px]">
-                      <div className="w-full h-full rounded-xl bg-slate-700 flex items-center justify-center">
+                      <div className="w-full h-full rounded-xl bg-slate-900 flex items-center justify-center">
                         <Icon className="w-7 h-7 text-cyan-400" strokeWidth={1.5} />
                       </div>
                     </div>
@@ -77,7 +77,7 @@ const WhyChooseSection = () => {
                 </div>
 
                 {/* Bottom accent */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             );
           })}

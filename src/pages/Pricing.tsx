@@ -76,7 +76,7 @@ const Pricing = () => {
                 BBE Club will contact you soon.
               </p>
               <Link to="/">
-                <Button className="bg-slate-800 hover:bg-slate-900 text-white font-semibold py-4 px-8 text-lg rounded-lg">
+                <Button className="bg-slate-900 hover:bg-slate-950 text-white font-semibold py-4 px-8 text-lg rounded-lg">
                   Back to Home
                 </Button>
               </Link>
@@ -91,8 +91,8 @@ const Pricing = () => {
               onClick={() => handlePlanSelect("basic")}
               className={`rounded-lg shadow-xl p-6 text-center transition-all ${
                 selectedPlan === "basic"
-                  ? "bg-gradient-to-br from-slate-800 to-slate-900 ring-4 ring-cyan-400"
-                  : "bg-gradient-to-br from-slate-700 to-slate-800 opacity-70 hover:opacity-90"
+                  ? "bg-gradient-to-br from-slate-900 to-slate-950 ring-4 ring-cyan-400"
+                  : "bg-gradient-to-br from-slate-800 to-slate-900 opacity-70 hover:opacity-90"
               }`}
             >
               <p className="text-slate-400 text-xs uppercase tracking-wider mb-1">Basic</p>
@@ -109,8 +109,8 @@ const Pricing = () => {
               onClick={() => handlePlanSelect("plus")}
               className={`rounded-lg shadow-xl p-6 text-center transition-all ${
                 selectedPlan === "plus"
-                  ? "bg-gradient-to-br from-slate-800 to-slate-900 ring-4 ring-cyan-400"
-                  : "bg-gradient-to-br from-slate-700 to-slate-800 opacity-70 hover:opacity-90"
+                  ? "bg-gradient-to-br from-slate-900 to-slate-950 ring-4 ring-cyan-400"
+                  : "bg-gradient-to-br from-slate-800 to-slate-900 opacity-70 hover:opacity-90"
               }`}
             >
               <p className="text-slate-400 text-xs uppercase tracking-wider mb-1">Plus</p>
@@ -199,7 +199,7 @@ const Pricing = () => {
 
               <Button
                 type="submit"
-                className="w-full bg-slate-800 hover:bg-slate-900 text-white font-semibold py-6 text-lg rounded-lg"
+                className="w-full bg-slate-900 hover:bg-slate-950 text-white font-semibold py-6 text-lg rounded-lg"
               >
                 Submit Application
               </Button>

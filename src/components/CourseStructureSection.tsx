@@ -1,6 +1,9 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Play, Calculator, ArrowDown } from "lucide-react";
+import { Calculator } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 // Custom Big Ben icon for English
 const EnglishIcon = ({ className }: { className?: string }) => (
@@ -114,14 +117,43 @@ const courseSubjects = [
   },
 ];
 
+const pricingPlans = [
+  {
+    id: "standard" as const,
+    name: "Standard",
+    price: "70",
+    description: "A clear, step-by-step BBE entrance exam preparation with platform practice.",
+    features: [
+      "Access to all video materials",
+      "Practice questions bank",
+      "Study guides & summaries",
+      "Email support",
+    ],
+    recommended: false,
+    accentColor: "cyan",
+  },
+  {
+    id: "plus" as const,
+    name: "Plus",
+    price: "100",
+    description: "Intensive prep to maximize your chances of getting into the BBE program, with extra guidance and support.",
+    features: [
+      "Everything in Standard",
+      "Live Q&A sessions",
+      "Personal feedback on practice tests",
+      "Priority support",
+      "Exclusive tips from current students",
+    ],
+    recommended: true,
+    accentColor: "gradient",
+  },
+];
+
 const CourseStructureSection = () => {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.2);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const handlePlay = () => {
-    setIsPlaying(true);
-  };
+  const { ref: pricingRef, isVisible: pricingVisible } = useScrollAnimation(0.2);
+  const [selectedPlan, setSelectedPlan] = useState<"standard" | "plus">("plus");
 
   return (
     <section className="py-24 relative">
@@ -148,14 +180,14 @@ const CourseStructureSection = () => {
           const Icon = subject.icon;
           
           return (
-            <div key={index} className="bg-slate-800 p-8 md:p-12 relative min-h-[400px] flex flex-col">
+            <div key={index} className="bg-slate-900 p-8 md:p-12 relative min-h-[400px] flex flex-col">
               {/* Number in top right */}
               <span className="absolute top-6 right-6 text-sm text-slate-400">{subject.number}</span>
               
               {/* Image placeholder area */}
               <div className="h-40 flex items-center justify-center mb-8">
                 <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-cyan-400 via-purple-400 to-pink-400 p-[2px]">
-                  <div className="w-full h-full rounded-2xl bg-slate-700 flex items-center justify-center">
+                  <div className="w-full h-full rounded-2xl bg-slate-900 flex items-center justify-center">
                     {subject.isCustom ? (
                       <Icon className="w-12 h-12 text-cyan-400" />
                     ) : (
@@ -180,43 +212,167 @@ const CourseStructureSection = () => {
         })}
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10 px-4">
-        {/* Arrow pointing to video */}
-        <div className="flex flex-col items-center justify-center py-12">
-          <p className="text-lg md:text-xl text-muted-foreground mb-4">
-            More information about the course you can watch in the video
+      {/* Pricing Section */}
+      <div
+        ref={pricingRef}
+        className={`max-w-5xl mx-auto relative z-10 px-4 mt-16 opacity-0 ${pricingVisible ? 'animate-fade-up' : ''}`}
+      >
+        <div className="text-center mb-8">
+          <h3 className="text-3xl md:text-4xl font-bold mb-4">
+            Choose Your Plan
+          </h3>
+          <p className="text-lg text-muted-foreground">
+            Start your journey to BBE success today
           </p>
-          <ArrowDown className="w-8 h-8 text-primary animate-bounce" />
         </div>
 
-        {/* Video section */}
-        <div className="relative rounded-3xl overflow-hidden bg-slate-800 aspect-video shadow-2xl max-w-4xl mx-auto">
-          {!isPlaying ? (
-            <div 
-              className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer group"
-              onClick={handlePlay}
-            >
-              {/* Play button */}
-              <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <div className="w-16 h-16 rounded-full bg-primary/40 flex items-center justify-center">
-                  <Play className="w-8 h-8 text-primary fill-primary ml-1" />
-                </div>
-              </div>
-              <p className="text-slate-400 mt-6 text-lg">
-                YouTube Video: Course Structure Overview
-              </p>
-            </div>
-          ) : (
-            <iframe
-              className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-              title="Course Structure Overview"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          )}
+        {/* Switcher */}
+        <div className="flex justify-center mb-12">
+          <div className="relative flex items-center gap-1 p-1.5 rounded-full bg-white border border-gray-200">
+            {pricingPlans.map((plan) => (
+              <motion.button
+                key={plan.id}
+                onClick={() => setSelectedPlan(plan.id)}
+                whileTap={{ scale: 0.96 }}
+                className="relative px-8 py-3 rounded-full text-sm font-semibold focus:outline-none"
+              >
+                {selectedPlan === plan.id && (
+                  <motion.div
+                    layoutId="switcher-bg"
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background: plan.accentColor === "cyan"
+                        ? "white"
+                        : "linear-gradient(135deg, hsl(199, 95%, 81%) 0%, hsl(291, 95%, 80%) 100%)",
+                      border: plan.accentColor === "cyan" ? "2px solid #22d3ee" : "none"
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+                <span className={`relative z-10 transition-colors duration-300 ${
+                  selectedPlan === plan.id ? 'text-slate-900 font-bold' : 'text-slate-600 hover:text-slate-900'
+                }`}>
+                  {plan.name}
+                </span>
+              </motion.button>
+            ))}
+          </div>
         </div>
 
+        {/* Plans */}
+        <div className="grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
+          {pricingPlans.map((plan) => {
+            const isSelected = selectedPlan === plan.id;
+            const isCyan = plan.accentColor === "cyan";
+
+            return (
+              <motion.div
+                key={plan.id}
+                onClick={() => setSelectedPlan(plan.id)}
+                animate={{
+                  scale: isSelected ? 1.05 : 0.95,
+                  opacity: isSelected ? 1 : 0.4,
+                  filter: isSelected ? "grayscale(0)" : "grayscale(1)",
+                }}
+                whileHover={!isSelected ? { scale: 1, opacity: 0.7 } : {}}
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 20,
+                  opacity: { duration: 0.3 },
+                  filter: { duration: 0.3 }
+                }}
+                className="relative cursor-pointer"
+              >
+                {/* Card with border */}
+                <motion.div
+                  className="relative rounded-2xl p-[2px] w-full"
+                  animate={{
+                    boxShadow: isSelected ? "0 25px 50px -12px rgba(0, 0, 0, 0.25)" : "none"
+                  }}
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    background: isSelected
+                      ? isCyan
+                        ? "#22d3ee"
+                        : "linear-gradient(135deg, hsl(199, 95%, 81%) 0%, hsl(291, 95%, 80%) 100%)"
+                      : "#d1d5db"
+                  }}
+                >
+                  {/* Recommended badge - on the border, centered */}
+                  {plan.recommended && isSelected && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute -top-3 inset-x-0 flex justify-center z-10"
+                    >
+                      <span className="px-4 py-1 text-xs font-bold uppercase tracking-wider text-slate-900 rounded-full gradient-bg shadow-lg">
+                        Recommended
+                      </span>
+                    </motion.div>
+                  )}
+                  <div className="w-full h-full rounded-2xl bg-white p-8 flex flex-col min-h-[420px]">
+
+                    {/* Price info */}
+                    <div className="text-center mb-6 mt-2">
+                      <h4 className="text-2xl font-bold text-slate-900 mb-2">{plan.name}</h4>
+                      <div className="flex items-baseline justify-center gap-1">
+                        <span className="text-5xl font-bold text-slate-900">{plan.price}</span>
+                        <span className="text-2xl font-medium text-slate-500">€</span>
+                      </div>
+                      <p className={`text-sm mt-3 px-2 ${plan.id === "standard" ? "text-slate-500 leading-relaxed" : "text-slate-400"}`}>
+                        {plan.description}
+                      </p>
+                    </div>
+
+                    {/* Features - always visible */}
+                    <div className="flex-1">
+                      <ul className="space-y-3 mb-6">
+                        {plan.features.map((feature, featureIndex) => (
+                          <li
+                            key={featureIndex}
+                            className="flex items-start gap-3"
+                          >
+                            {/* Circle checkmark - cyan for Standard, gradient for Plus */}
+                            <div
+                              className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                              style={{
+                                background: isCyan
+                                  ? '#22d3ee'
+                                  : 'linear-gradient(135deg, hsl(199, 89%, 70%) 0%, hsl(280, 85%, 65%) 100%)'
+                              }}
+                            >
+                              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </svg>
+                            </div>
+                            <span className="text-slate-600">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Button */}
+                    <div className="mt-auto">
+                      <Link to="/pricing">
+                        <Button
+                          className={`w-full font-semibold py-6 text-lg rounded-lg transition-all duration-300 ${
+                            isSelected
+                              ? 'bg-slate-900 hover:bg-slate-950 text-white'
+                              : 'bg-gray-300 text-gray-500'
+                          }`}
+                        >
+                          Get Started
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
