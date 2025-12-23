@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import CourseStructureSection from "@/components/CourseStructureSection";
@@ -24,6 +25,7 @@ const Index = () => {
 
   return (
     <main className="min-h-screen overflow-x-hidden relative bg-background">
+      <Header />
       <div className="relative z-10">
         <HeroSection />
         <div className="relative">

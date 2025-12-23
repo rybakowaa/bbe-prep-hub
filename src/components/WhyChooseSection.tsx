@@ -1,5 +1,4 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
 import { BookOpen, Users, Clock, FileCheck } from "lucide-react";
 
 const reasons = [
@@ -30,57 +29,47 @@ const reasons = [
 ];
 
 const WhyChooseSection = () => {
-  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
-  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation(0.2);
+  const { ref: sectionRef, isVisible } = useScrollAnimation(0.2);
 
   return (
-    <section className="py-24 bg-gradient-to-b from-transparent via-primary/5 to-transparent">
-      <div className="max-w-6xl mx-auto px-4">
-        <div
-          ref={titleRef}
-          className={`text-center mb-16 opacity-0 ${titleVisible ? 'animate-fade-up' : ''}`}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-            Why choose <span className="gradient-text">BBE Club</span> course preparation?
-          </h2>
-        </div>
+    <section className="py-32 bg-slate-950 text-white relative overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full">
+        <div ref={sectionRef} className={`grid md:grid-cols-12 gap-16 md:gap-24 opacity-0 ${isVisible ? 'animate-fade-up' : ''}`}>
+          
+          {/* Left Column - Title */}
+          <div className="md:col-span-4 lg:col-span-5">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-none mb-6">
+              Why choose <br/> <span className="gradient-text">BBE Club?</span>
+            </h2>
+            <p className="text-slate-400 text-lg md:text-xl leading-relaxed max-w-sm">
+              We focus on what truly matters for the entrance exam, cutting through the noise.
+            </p>
+          </div>
 
-        {/* 2x2 Grid of cards */}
-        <div
-          ref={cardsRef}
-          className={`grid md:grid-cols-2 gap-6 opacity-0 ${cardsVisible ? 'animate-fade-up' : ''}`}
-          style={{ animationDelay: '0.2s' }}
-        >
-          {reasons.map((reason, index) => {
-            const Icon = reason.Icon;
-            return (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden"
-              >
-                {/* Number badge */}
-                <span className="absolute top-6 right-6 text-5xl font-bold text-gray-100 select-none">
-                  {reason.number}
-                </span>
-
-                {/* Content */}
-                <div className="relative z-10">
-                  <div className="mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-400 via-purple-400 to-pink-400 p-[2px]">
-                      <div className="w-full h-full rounded-xl bg-slate-900 flex items-center justify-center">
-                        <Icon className="w-7 h-7 text-cyan-400" strokeWidth={1.5} />
-                      </div>
+          {/* Right Column - List */}
+          <div className="md:col-span-8 lg:col-span-7">
+            <div className="space-y-12">
+              {reasons.map((reason, index) => {
+                const Icon = reason.Icon;
+                return (
+                  <div key={index} className="flex flex-col md:flex-row md:items-start gap-6 border-b border-white/10 pb-12 last:border-0 last:pb-0 group">
+                    <div className="flex-shrink-0">
+                         <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors border border-white/10">
+                            <Icon className="w-6 h-6 text-white" />
+                         </div>
+                    </div>
+                    <div>
+                        <h3 className="text-2xl font-medium mb-3">{reason.title}</h3>
+                        <p className="text-slate-400 leading-relaxed text-lg max-w-lg">
+                            {reason.description}
+                        </p>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 text-gray-900">{reason.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{reason.description}</p>
-                </div>
+                );
+              })}
+            </div>
+          </div>
 
-                {/* Bottom accent */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-            );
-          })}
         </div>
       </div>
     </section>

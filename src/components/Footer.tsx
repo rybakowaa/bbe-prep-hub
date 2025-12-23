@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="py-16 px-4 bg-slate-900 text-background">
+    <footer className="py-16 px-4 bg-slate-950 text-background">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
-          <span className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+          <span className="text-5xl font-extrabold gradient-text">
             BBE
           </span>
           <p className="text-background/70 mt-4 text-lg">
@@ -62,7 +62,7 @@ const SocialLink = ({
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    className="w-12 h-12 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary/20 hover:scale-110 transition-all duration-300"
+    className="w-12 h-12 rounded-2xl bg-background/10 flex items-center justify-center hover:bg-primary/20 hover:scale-110 transition-all duration-300"
   >
     <Icon className="w-5 h-5 text-background" />
   </a>

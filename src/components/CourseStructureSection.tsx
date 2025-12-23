@@ -95,24 +95,36 @@ const courseSubjects = [
     icon: Calculator,
     text: "Economics",
     isCustom: false,
-    description: "We cover all the key topics from your economics textbook and translate the difficult 'economic language' into clear, simple explanations. Along the way, you get focused summaries and plenty of targeted practice so you can confidently handle exam questions.",
-    number: "01.",
+    sellingPoints: [
+      "Complete coverage of key textbook topics with clear explanations",
+      "Chapter summaries and targeted practice for exam confidence",
+      "Supply, demand and market structures explained step-by-step",
+      "Real exam-style problems with detailed solutions"
+    ],
     questionCount: "200+"
   },
   {
     icon: HyperbolaIcon,
     text: "Mathematics",
     isCustom: true,
-    description: "For mathematics, our professional tutors who have successfully made it into BBE program explain every relevant topic and solve problems in real time, providing a detailed step-by-step explanation of each solution.",
-    number: "02.",
+    sellingPoints: [
+      "Step-by-step problem breakdowns with solved examples",
+      "All exam topics from algebra and calculus to statistics",
+      "Formula sheets and quick reference guides included",
+      "Timed practice sets matching actual BBE exam conditions"
+    ],
     questionCount: "400+"
   },
   {
     icon: EnglishIcon,
     text: "English",
     isCustom: true,
-    description: "We provide tailored sets of practice exercises focused on the most tedious yet exam-critical topics, so you can systematically train exactly what is most likely to be tested.",
-    number: "03.",
+    sellingPoints: [
+      "Grammar and vocabulary drills for language proficiency",
+      "Reading comprehension with text analysis techniques",
+      "Writing structure templates and academic techniques",
+      "Common mistakes corrected with expert feedback"
+    ],
     questionCount: "100+"
   },
 ];
@@ -124,10 +136,12 @@ const pricingPlans = [
     price: "70",
     description: "A clear, step-by-step BBE entrance exam preparation with platform practice.",
     features: [
-      "Access to all video materials",
-      "Practice questions bank",
-      "Study guides & summaries",
-      "Email support",
+      "Full access to the platform (questions + solutions)",
+      "Structured study plan (weekly roadmap)",
+      "Live group session (Q&A)",
+      "Access to recorded question walkthroughs",
+      "General guidance notes + key tips",
+      "Basic exam toolkit (checklist + time-management tips)",
     ],
     recommended: false,
     accentColor: "cyan",
@@ -139,10 +153,10 @@ const pricingPlans = [
     description: "Intensive prep to maximize your chances of getting into the BBE program, with extra guidance and support.",
     features: [
       "Everything in Standard",
-      "Live Q&A sessions",
-      "Personal feedback on practice tests",
-      "Priority support",
-      "Exclusive tips from current students",
+      "One full exam simulation under real test conditions, including time limits and structure identical to the actual exam",
+      "Private question access to a tutor with responses within 48 hours",
+      "Additional live sessions for guided problem solving and exam strategy",
+      "Exclusive tips from tutors on timing, common traps, and test-day strategy",
     ],
     recommended: true,
     accentColor: "gradient",
@@ -156,222 +170,218 @@ const CourseStructureSection = () => {
   const [selectedPlan, setSelectedPlan] = useState<"standard" | "plus">("plus");
 
   return (
-    <section className="py-24 relative">
-      <div className="max-w-6xl mx-auto relative z-10 px-4">
+    <section id="structure" data-theme="light" className="py-32 bg-white relative">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full">
+        
+        {/* Header */}
         <div
           ref={titleRef}
-          className={`text-center mb-12 opacity-0 ${titleVisible ? 'animate-fade-up' : ''}`}
+          className={`mb-24 opacity-0 text-center ${titleVisible ? 'animate-fade-up' : ''}`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Course Structure: Everything you need to succeed
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 leading-none mb-6">
+            Everything you need to succeed.
           </h2>
-          <p className="text-xl md:text-2xl">
-            We offer <span className="font-bold gradient-text text-2xl md:text-3xl">700+</span> practice questions with the most relevant and updated tasks!
+          <p className="text-xl text-slate-600 leading-relaxed">
+            We offer <span className="text-2xl md:text-3xl font-bold gradient-text">700+</span> practice questions with the most relevant and updated tasks!
           </p>
         </div>
-      </div>
 
-      {/* Three columns layout - full width */}
-      <div 
-        ref={contentRef}
-        className={`grid md:grid-cols-3 gap-0 opacity-0 ${contentVisible ? 'animate-fade-up' : ''}`}
-      >
-        {courseSubjects.map((subject, index) => {
-          const Icon = subject.icon;
-          
-          return (
-            <div key={index} className="bg-slate-900 p-8 md:p-12 relative min-h-[400px] flex flex-col">
-              {/* Number in top right */}
-              <span className="absolute top-6 right-6 text-sm text-slate-400">{subject.number}</span>
-              
-              {/* Image placeholder area */}
-              <div className="h-40 flex items-center justify-center mb-8">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-cyan-400 via-purple-400 to-pink-400 p-[2px]">
-                  <div className="w-full h-full rounded-2xl bg-slate-900 flex items-center justify-center">
-                    {subject.isCustom ? (
-                      <Icon className="w-12 h-12 text-cyan-400" />
-                    ) : (
-                      <Icon className="w-12 h-12 text-cyan-400" />
-                    )}
-                  </div>
+        {/* Subjects Grid */}
+        <div 
+          ref={contentRef}
+          className={`grid md:grid-cols-3 gap-8 opacity-0 ${contentVisible ? 'animate-fade-up' : ''}`}
+        >
+          {courseSubjects.map((subject, index) => {
+            const Icon = subject.icon;
+            
+            return (
+              <div key={index} className="bg-white rounded-3xl p-8 md:p-10 relative flex flex-col border border-slate-100 shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1">
+                <div className="flex justify-between items-center mb-8">
+                   <h3 className="text-3xl font-bold text-slate-900 tracking-tight">{subject.text}</h3>
+                   <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100 text-slate-900">
+                      <Icon className="w-7 h-7" strokeWidth={1.5} />
+                   </div>
+                </div>
+
+                <ul className="space-y-4 mb-6">
+                  {subject.sellingPoints.map((point, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <span className="w-2 h-2 rounded-full bg-slate-400 mt-2.5 flex-shrink-0"></span>
+                      <span className="text-lg font-medium text-slate-600 leading-relaxed">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="pt-8 border-t border-slate-100">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Question Bank</p>
+                  <p className="text-4xl font-bold gradient-text w-fit leading-tight">{subject.questionCount}</p>
                 </div>
               </div>
-              
-              {/* Title */}
-              <h3 className="text-2xl font-bold mb-4 text-white">{subject.text}</h3>
-              
-              {/* Description */}
-              <p className="text-base leading-relaxed text-slate-300 flex-1">{subject.description}</p>
-              
-              {/* Question Bank */}
-              <p className="text-xl font-bold text-white mt-6">
-                Bank of <span className="gradient-text text-2xl">{subject.questionCount}</span> questions
-              </p>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Pricing Section */}
-      <div
-        ref={pricingRef}
-        className={`max-w-5xl mx-auto relative z-10 px-4 mt-16 opacity-0 ${pricingVisible ? 'animate-fade-up' : ''}`}
-      >
-        <div className="text-center mb-8">
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">
-            Choose Your Plan
-          </h3>
-          <p className="text-lg text-muted-foreground">
-            Start your journey to BBE success today
-          </p>
-        </div>
-
-        {/* Switcher */}
-        <div className="flex justify-center mb-12">
-          <div className="relative flex items-center gap-1 p-1.5 rounded-full bg-white border border-gray-200">
-            {pricingPlans.map((plan) => (
-              <motion.button
-                key={plan.id}
-                onClick={() => setSelectedPlan(plan.id)}
-                whileTap={{ scale: 0.96 }}
-                className="relative px-8 py-3 rounded-full text-sm font-semibold focus:outline-none"
-              >
-                {selectedPlan === plan.id && (
-                  <motion.div
-                    layoutId="switcher-bg"
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background: plan.accentColor === "cyan"
-                        ? "white"
-                        : "linear-gradient(135deg, hsl(199, 95%, 81%) 0%, hsl(291, 95%, 80%) 100%)",
-                      border: plan.accentColor === "cyan" ? "2px solid #22d3ee" : "none"
-                    }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-                <span className={`relative z-10 transition-colors duration-300 ${
-                  selectedPlan === plan.id ? 'text-slate-900 font-bold' : 'text-slate-600 hover:text-slate-900'
-                }`}>
-                  {plan.name}
-                </span>
-              </motion.button>
-            ))}
-          </div>
-        </div>
-
-        {/* Plans */}
-        <div className="grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
-          {pricingPlans.map((plan) => {
-            const isSelected = selectedPlan === plan.id;
-            const isCyan = plan.accentColor === "cyan";
-
-            return (
-              <motion.div
-                key={plan.id}
-                onClick={() => setSelectedPlan(plan.id)}
-                animate={{
-                  scale: isSelected ? 1.05 : 0.95,
-                  opacity: isSelected ? 1 : 0.4,
-                  filter: isSelected ? "grayscale(0)" : "grayscale(1)",
-                }}
-                whileHover={!isSelected ? { scale: 1, opacity: 0.7 } : {}}
-                transition={{
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 20,
-                  opacity: { duration: 0.3 },
-                  filter: { duration: 0.3 }
-                }}
-                className="relative cursor-pointer"
-              >
-                {/* Card with border */}
-                <motion.div
-                  className="relative rounded-2xl p-[2px] w-full"
-                  animate={{
-                    boxShadow: isSelected ? "0 25px 50px -12px rgba(0, 0, 0, 0.25)" : "none"
-                  }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    background: isSelected
-                      ? isCyan
-                        ? "#22d3ee"
-                        : "linear-gradient(135deg, hsl(199, 95%, 81%) 0%, hsl(291, 95%, 80%) 100%)"
-                      : "#d1d5db"
-                  }}
-                >
-                  {/* Recommended badge - on the border, centered */}
-                  {plan.recommended && isSelected && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute -top-3 inset-x-0 flex justify-center z-10"
-                    >
-                      <span className="px-4 py-1 text-xs font-bold uppercase tracking-wider text-slate-900 rounded-full gradient-bg shadow-lg">
-                        Recommended
-                      </span>
-                    </motion.div>
-                  )}
-                  <div className="w-full h-full rounded-2xl bg-white p-8 flex flex-col min-h-[420px]">
-
-                    {/* Price info */}
-                    <div className="text-center mb-6 mt-2">
-                      <h4 className="text-2xl font-bold text-slate-900 mb-2">{plan.name}</h4>
-                      <div className="flex items-baseline justify-center gap-1">
-                        <span className="text-5xl font-bold text-slate-900">{plan.price}</span>
-                        <span className="text-2xl font-medium text-slate-500">€</span>
-                      </div>
-                      <p className={`text-sm mt-3 px-2 ${plan.id === "standard" ? "text-slate-500 leading-relaxed" : "text-slate-400"}`}>
-                        {plan.description}
-                      </p>
-                    </div>
-
-                    {/* Features - always visible */}
-                    <div className="flex-1">
-                      <ul className="space-y-3 mb-6">
-                        {plan.features.map((feature, featureIndex) => (
-                          <li
-                            key={featureIndex}
-                            className="flex items-start gap-3"
-                          >
-                            {/* Circle checkmark - cyan for Standard, gradient for Plus */}
-                            <div
-                              className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                              style={{
-                                background: isCyan
-                                  ? '#22d3ee'
-                                  : 'linear-gradient(135deg, hsl(199, 89%, 70%) 0%, hsl(280, 85%, 65%) 100%)'
-                              }}
-                            >
-                              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                              </svg>
-                            </div>
-                            <span className="text-slate-600">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Button */}
-                    <div className="mt-auto">
-                      <Link to="/pricing">
-                        <Button
-                          className={`w-full font-semibold py-6 text-lg rounded-lg transition-all duration-300 ${
-                            isSelected
-                              ? 'bg-slate-900 hover:bg-slate-950 text-white'
-                              : 'bg-gray-300 text-gray-500'
-                          }`}
-                        >
-                          Get Started
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
             );
           })}
+        </div>
+
+        {/* Pricing Section */}
+        <div
+          ref={pricingRef}
+          className={`mt-24 opacity-0 ${pricingVisible ? 'animate-fade-up' : ''}`}
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
+              Choose Your Plan
+            </h3>
+            <p className="text-lg text-slate-500">
+              Start your journey to BBE success today
+            </p>
+          </div>
+
+          {/* Switcher */}
+          <div className="flex justify-center mb-12">
+            <div className="relative flex items-center gap-1 p-1.5 rounded-full bg-white border border-gray-200">
+              {pricingPlans.map((plan) => (
+                <motion.button
+                  key={plan.id}
+                  onClick={() => setSelectedPlan(plan.id)}
+                  whileTap={{ scale: 0.96 }}
+                  className="relative px-8 py-3 rounded-full text-sm font-semibold focus:outline-none"
+                >
+                  {selectedPlan === plan.id && (
+                    <motion.div
+                      layoutId="switcher-bg"
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background: plan.accentColor === "cyan"
+                          ? "white"
+                          : "linear-gradient(135deg, hsl(199, 95%, 81%) 0%, hsl(291, 95%, 80%) 100%)",
+                        border: plan.accentColor === "cyan" ? "2px solid #22d3ee" : "none"
+                      }}
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                  <span className={`relative z-10 transition-colors duration-300 ${
+                    selectedPlan === plan.id ? 'text-slate-900 font-bold' : 'text-slate-600 hover:text-slate-900'
+                  }`}>
+                    {plan.name}
+                  </span>
+                </motion.button>
+              ))}
+            </div>
+          </div>
+
+          {/* Plans */}
+          <div className="grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
+            {pricingPlans.map((plan) => {
+              const isSelected = selectedPlan === plan.id;
+              const isCyan = plan.accentColor === "cyan";
+
+              return (
+                <motion.div
+                  key={plan.id}
+                  onClick={() => setSelectedPlan(plan.id)}
+                  animate={{
+                    scale: isSelected ? 1.05 : 0.95,
+                    opacity: isSelected ? 1 : 0.4,
+                    filter: isSelected ? "grayscale(0)" : "grayscale(1)",
+                  }}
+                  whileHover={!isSelected ? { scale: 1, opacity: 0.7 } : {}}
+                  transition={{
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 20,
+                    opacity: { duration: 0.3 },
+                    filter: { duration: 0.3 }
+                  }}
+                  className="relative cursor-pointer"
+                >
+                  {/* Card with border */}
+                  <motion.div
+                    className="relative rounded-2xl p-[2px] w-full"
+                    animate={{
+                      boxShadow: isSelected ? "0 25px 50px -12px rgba(0, 0, 0, 0.25)" : "none"
+                    }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      background: isSelected
+                        ? isCyan
+                          ? "#22d3ee"
+                          : "linear-gradient(135deg, hsl(199, 95%, 81%) 0%, hsl(291, 95%, 80%) 100%)"
+                        : "#d1d5db"
+                    }}
+                  >
+                    {/* Recommended badge - on the border, centered */}
+                    {plan.recommended && isSelected && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute -top-3 inset-x-0 flex justify-center z-10"
+                      >
+                        <span className="px-4 py-1 text-xs font-bold uppercase tracking-wider text-slate-900 rounded-full gradient-bg shadow-lg">
+                          Recommended
+                        </span>
+                      </motion.div>
+                    )}
+                    <div className="w-full h-full rounded-2xl bg-white p-8 flex flex-col min-h-[420px]">
+
+                      {/* Price info */}
+                      <div className="text-center mb-6 mt-2">
+                        <h4 className="text-2xl font-bold text-slate-900 mb-2">{plan.name}</h4>
+                        <div className="flex items-baseline justify-center gap-1">
+                          <span className="text-5xl font-bold text-slate-900">{plan.price}</span>
+                          <span className="text-2xl font-medium text-slate-500">€</span>
+                        </div>
+                        <p className={`text-sm mt-3 px-2 ${plan.id === "standard" ? "text-slate-500 leading-relaxed" : "text-slate-400"}`}>
+                          {plan.description}
+                        </p>
+                      </div>
+
+                      {/* Features - always visible */}
+                      <div className="flex-1">
+                        <ul className="space-y-3 mb-6">
+                          {plan.features.map((feature, featureIndex) => (
+                            <li
+                              key={featureIndex}
+                              className="flex items-start gap-3"
+                            >
+                              {/* Circle checkmark - cyan for Standard, gradient for Plus */}
+                              <div
+                                className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                                style={{
+                                  background: isCyan
+                                    ? '#22d3ee'
+                                    : 'linear-gradient(135deg, hsl(199, 89%, 70%) 0%, hsl(280, 85%, 65%) 100%)'
+                                }}
+                              >
+                                <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                              </div>
+                              <span className="text-slate-600">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Button */}
+                      <div className="mt-auto">
+                        <Link to="/pricing">
+                          <Button
+                            className={`w-full font-semibold py-6 text-lg rounded-lg transition-all duration-300 ${
+                              isSelected
+                                ? 'bg-slate-900 hover:bg-slate-950 text-white'
+                                : 'bg-gray-300 text-gray-500'
+                            }`}
+                          >
+                            Get Started
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

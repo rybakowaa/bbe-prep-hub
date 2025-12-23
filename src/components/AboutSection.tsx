@@ -5,51 +5,55 @@ const AboutSection = () => {
   const { ref: blocksRef, isVisible: blocksVisible } = useScrollAnimation(0.5);
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-white">
-      <div className="max-w-6xl mx-auto relative z-10 w-full px-4">
-        {/* Title centered at top */}
+    <section id="about" data-theme="light" className="py-32 relative overflow-hidden bg-white">
+      <div className="max-w-[1400px] mx-auto relative z-10 w-full px-6 md:px-12">
+        {/* Title & Intro */}
         <div
           ref={titleRef}
-          className={`text-center mb-12 opacity-0 ${titleVisible ? 'animate-fade-up' : ''}`}
+          className={`grid md:grid-cols-12 gap-12 mb-24 opacity-0 ${titleVisible ? 'animate-fade-up' : ''}`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            What is <span className="gradient-text">BBE Club</span>?
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Your guide to success in the BBE entrance exam.
-          </p>
+          <div className="md:col-span-5">
+             <h2 className="text-5xl md:text-7xl font-bold text-slate-900 tracking-tight leading-none">
+              About the <br/> <span className="gradient-text">Club.</span>
+            </h2>
+          </div>
+          <div className="md:col-span-7 flex flex-col justify-end">
+            <p className="text-xl md:text-2xl text-slate-600 leading-relaxed font-light">
+               We are a student-led initiative helping prospective students navigate the BBE entrance exam at WU. Founded by students who passed, we know the path.
+            </p>
+          </div>
         </div>
 
-        {/* Three blocks in a row with purple top border */}
+        {/* Three blocks in a row - Clean */}
         <div
           ref={blocksRef}
-          className={`grid md:grid-cols-3 gap-0 opacity-0 ${blocksVisible ? 'animate-fade-up' : ''}`}
+          className={`grid md:grid-cols-3 gap-8 md:gap-12 opacity-0 ${blocksVisible ? 'animate-fade-up' : ''}`}
           style={{ animationDelay: '0.3s' }}
         >
           {/* Block 1 */}
-          <div className="bg-white p-8 border-t-4 border-t-slate-900 border-l border-b border-r border-gray-200 flex flex-col">
-            <span className="text-sm text-gray-400 mb-4">About us</span>
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">Student-Led Initiative</h3>
-            <p className="text-gray-600 leading-relaxed flex-1">
-              BBE Club was founded by <span className="font-bold">current BBE students</span> who have successfully passed the entrance exam. We understand the challenges and know exactly what it takes to succeed.
+          <div className="group flex flex-col space-y-4 cursor-pointer transition-transform duration-300 hover:scale-105">
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Who we are</span>
+            <h3 className="text-2xl font-medium text-slate-900 group-hover:gradient-text transition-all duration-300">Student-Led</h3>
+            <p className="text-slate-500 leading-relaxed text-lg">
+              Founded by current BBE students who have successfully passed the exam. We understand the challenges firsthand.
             </p>
           </div>
 
           {/* Block 2 */}
-          <div className="bg-white p-8 border-t-4 border-t-slate-900 border-l border-b border-r border-gray-200 flex flex-col">
-            <span className="text-sm text-gray-400 mb-4">Our mission</span>
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">Guiding Future Students</h3>
-            <p className="text-gray-600 leading-relaxed flex-1">
-              We navigate prospective students through the BBE entrance exam preparation with <span className="font-bold">structured materials, practice tests, and expert guidance</span> to maximize your chances of admission.
+          <div className="group flex flex-col space-y-4 cursor-pointer transition-transform duration-300 hover:scale-105">
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Mission</span>
+            <h3 className="text-2xl font-medium text-slate-900 group-hover:gradient-text transition-all duration-300">Expert Guidance</h3>
+            <p className="text-slate-500 leading-relaxed text-lg">
+              We provide structured materials, practice tests, and expert guidance to maximize your admission chances.
             </p>
           </div>
 
           {/* Block 3 */}
-          <div className="bg-white p-8 border-t-4 border-t-slate-900 border-l border-b border-r border-gray-200 flex flex-col">
-            <span className="text-sm text-gray-400 mb-4">Our approach</span>
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">Proven Success</h3>
-            <p className="text-gray-600 leading-relaxed flex-1">
-              Our preparation course has helped <span className="font-bold">dozens of students</span> get into the BBE program. We offer live sessions, updated materials, and a supportive community to guide you every step of the way.
+          <div className="group flex flex-col space-y-4 cursor-pointer transition-transform duration-300 hover:scale-105">
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Results</span>
+            <h3 className="text-2xl font-medium text-slate-900 group-hover:gradient-text transition-all duration-300">Proven Success</h3>
+            <p className="text-slate-500 leading-relaxed text-lg">
+              Helping dozens of students get into the BBE program every year through live sessions and community support.
             </p>
           </div>
         </div>
